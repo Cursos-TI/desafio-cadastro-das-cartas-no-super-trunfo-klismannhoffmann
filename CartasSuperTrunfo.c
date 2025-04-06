@@ -1,22 +1,82 @@
-#include <stdio.h>
+#include <stdio.h> 
 
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
-// Siga os comentários para implementar cada parte do desafio.
-//Teste larissa
+int main(){
 
-int main() {
-    // Sugestão: Defina variáveis separadas para cada atributo da cidade.
-    // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
-    
-    // Cadastro das Cartas:
-    // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
-    // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
-    
-    // Exibição dos Dados das Cartas:
-    // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
-    // Exiba os valores inseridos para cada atributo da cidade, um por linha.
+    //Definição das variaveis
+    int numHabitantesPrimeiraCarta, numPontosTuriticosPrimeiraCarta, numHabitantesSegundaCarta, numPontosTuristicoSegundaCarta;
+    float areaPrimeiraCarta, pibPrimeiraCarta, areaSegundaCarta, pibSegundaCarta;
+    char estadoPrimeiraCarta, estadoSegundaCarta;
+    char codigoPrimeiraCarta[4], codigoSegundaCarta[4];
+    char nomeCidadePrimeiraCarta[50], nomeCidadeSegundaCarta[50];
 
-    return 0;
+    //Cadastrar primeira carta
+    printf("Cadastre a Primeira Carta\n");
+    printf("Informe um estado de A a H:\n");
+    scanf(" %c", &estadoPrimeiraCarta);
+
+    printf("Informe o código da carta, sendo a letra do estado seguido de um número de 01 a 04 (ex: A01, B03):\n");
+    scanf("%s", codigoPrimeiraCarta);
+
+    printf("Informe o nome da cidade:\n");
+    scanf("%s", nomeCidadePrimeiraCarta);
+
+    printf("Informe o número de habitantes:\n");
+    scanf("%d", &numHabitantesPrimeiraCarta);
+
+    printf("Informe a área da cidade em quilometros quadrados:\n");
+    scanf("%f", &areaPrimeiraCarta);
+
+    printf("Informe o PIB da cidade:\n");
+    scanf("%f", &pibPrimeiraCarta);
+
+    printf("Informe o número de pontos turisticos da cidade:\n");
+    scanf("%d", &numPontosTuriticosPrimeiraCarta);
+
+    //Cadastrar segunda carta
+    printf("Cadastre a Segunda Carta\n");
+    printf("Informe um estado de A a H:\n");
+    scanf(" %c", &estadoSegundaCarta);
+
+    printf("Informe o código da carta, sendo a letra do estado seguido de um número de 01 a 04 (ex: A01, B03):\n");
+    scanf("%s", codigoSegundaCarta);
+
+    printf("Informe o nome da cidade:\n");
+    scanf("%s", nomeCidadeSegundaCarta);
+
+    printf("Informe o número de habitantes:\n");
+    scanf("%d", &numHabitantesSegundaCarta);
+
+    printf("Informe a área da cidade em quilometros quadrados:\n");
+    scanf("%f", &areaSegundaCarta);
+
+    printf("Informe o PIB da cidade:\n");
+    scanf("%f", &pibSegundaCarta);
+
+    printf("Informe o número de pontos turisticos da cidade:\n");
+    scanf("%d", &numPontosTuristicoSegundaCarta);
+
+    //Imprimir primeira carta
+    printf("-----------------------------------------------------------\n");
+    printf("\n");
+    printf("Carta 1\n");
+    printf("Estado: %c \n", estadoPrimeiraCarta);
+    printf("Código: %s \n", codigoPrimeiraCarta);
+    printf("Nome da Cidade: %s \n", nomeCidadePrimeiraCarta);
+    printf("População: %d \n", numHabitantesPrimeiraCarta);
+    printf("Área: %f \n", areaPrimeiraCarta);
+    printf("PIB: %f \n", pibPrimeiraCarta);
+    printf("Número de Pontos Turísticos: %d \n", numPontosTuriticosPrimeiraCarta);
+
+    //Imprimir primeira carta
+    printf("\n");
+    printf("Carta 2\n");
+    printf("Estado: %c \n", estadoSegundaCarta);
+    printf("Código: %s \n", codigoSegundaCarta);
+    printf("Nome da Cidade: %s \n", nomeCidadeSegundaCarta);
+    printf("População: %d \n", numHabitantesSegundaCarta);
+    printf("Área: %f \n", areaSegundaCarta);
+    printf("PIB: %f \n", pibSegundaCarta);
+    printf("Número de Pontos Turísticos: %d", numPontosTuristicoSegundaCarta);
+
+    return 0;  
 }
