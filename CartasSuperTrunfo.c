@@ -1,8 +1,9 @@
 #include <stdio.h> 
 
 //Define variaveis globais
-int numHabitantesPrimeiraCarta, numPontosTuriticosPrimeiraCarta, numHabitantesSegundaCarta, numPontosTuristicoSegundaCarta;
-float areaPrimeiraCarta, pibPrimeiraCarta, areaSegundaCarta, pibSegundaCarta;
+int numPontosTuriticosPrimeiraCarta, numPontosTuristicoSegundaCarta;
+unsigned long numHabitantesPrimeiraCarta, numHabitantesSegundaCarta;
+float areaPrimeiraCarta, pibPrimeiraCarta, areaSegundaCarta, pibSegundaCarta, superPoderPrimeiraCarta, superPoderSegundaCarta;
 float densidadeDemoPrimeiraCarta, rendaPerCapitaPrimeiraCarta;
 float densidadeDemoSegundaCarta, rendaPerCapitaSegundaCarta;
 char estadoPrimeiraCarta, estadoSegundaCarta;
@@ -14,13 +15,17 @@ void entrada_dados();
 void exibir_cartas();
 void calcular_densidade_demografica();
 void calcular_renda_per_capita();
+void calcular_super_poder();
+void exibir_comparacao();
 
 int main(){
        
     entrada_dados();  
     calcular_densidade_demografica();
     calcular_renda_per_capita();
+    calcular_super_poder();
     exibir_cartas();
+    exibir_comparacao();
 
     return 0;  
 }
@@ -33,7 +38,7 @@ void exibir_cartas(){
       printf("Estado: %c \n", estadoPrimeiraCarta);
       printf("Código: %s \n", codigoPrimeiraCarta);
       printf("Nome da Cidade: %s \n", nomeCidadePrimeiraCarta);
-      printf("População: %d \n", numHabitantesPrimeiraCarta);
+      printf("População: %lu \n", numHabitantesPrimeiraCarta);
       printf("Área: %.2f \n", areaPrimeiraCarta);
       printf("PIB: %.2f \n", pibPrimeiraCarta);
       printf("Número de Pontos Turísticos: %d \n", numPontosTuriticosPrimeiraCarta);
@@ -46,7 +51,7 @@ void exibir_cartas(){
       printf("Estado: %c \n", estadoSegundaCarta);
       printf("Código: %s \n", codigoSegundaCarta);
       printf("Nome da Cidade: %s \n", nomeCidadeSegundaCarta);
-      printf("População: %d \n", numHabitantesSegundaCarta);
+      printf("População: %lu \n", numHabitantesSegundaCarta);
       printf("Área: %.2f \n", areaSegundaCarta);
       printf("PIB: %.2f \n", pibSegundaCarta);
       printf("Número de Pontos Turísticos: %d \n", numPontosTuristicoSegundaCarta);
@@ -67,7 +72,7 @@ void entrada_dados(){
       scanf("%s", nomeCidadePrimeiraCarta);
   
       printf("Informe o número de habitantes:\n");
-      scanf("%d", &numHabitantesPrimeiraCarta);
+      scanf("%lu", &numHabitantesPrimeiraCarta);
   
       printf("Informe a área da cidade em quilometros quadrados:\n");
       scanf("%f", &areaPrimeiraCarta);
@@ -90,7 +95,7 @@ void entrada_dados(){
       scanf("%s", nomeCidadeSegundaCarta);
   
       printf("Informe o número de habitantes:\n");
-      scanf("%d", &numHabitantesSegundaCarta);
+      scanf("%lu", &numHabitantesSegundaCarta);
   
       printf("Informe a área da cidade em quilometros quadrados:\n");
       scanf("%f", &areaSegundaCarta);
@@ -104,12 +109,83 @@ void entrada_dados(){
 
 void calcular_densidade_demografica()
 {
-      densidadeDemoPrimeiraCarta = numHabitantesPrimeiraCarta / areaPrimeiraCarta;
-      densidadeDemoSegundaCarta = numHabitantesSegundaCarta / areaSegundaCarta;
+      densidadeDemoPrimeiraCarta =  (float)numHabitantesPrimeiraCarta / areaPrimeiraCarta;
+      densidadeDemoSegundaCarta =  (float)numHabitantesSegundaCarta / areaSegundaCarta;
 }
 
 void calcular_renda_per_capita()
 {
-      rendaPerCapitaPrimeiraCarta = pibPrimeiraCarta / numHabitantesPrimeiraCarta;
-      rendaPerCapitaSegundaCarta = pibSegundaCarta / numHabitantesSegundaCarta;
+      rendaPerCapitaPrimeiraCarta = pibPrimeiraCarta / (float)numHabitantesPrimeiraCarta;
+      rendaPerCapitaSegundaCarta = pibSegundaCarta / (float)numHabitantesSegundaCarta;
+}
+
+void calcular_super_poder()
+{
+      superPoderPrimeiraCarta = (float)numHabitantesPrimeiraCarta + 
+            rendaPerCapitaPrimeiraCarta +
+            areaPrimeiraCarta + 
+            pibPrimeiraCarta + 
+            (float)numPontosTuriticosPrimeiraCarta+
+            (areaPrimeiraCarta / (float)numHabitantesPrimeiraCarta);
+      
+      superPoderSegundaCarta = (float)numHabitantesSegundaCarta +
+            rendaPerCapitaSegundaCarta +
+            areaSegundaCarta +
+            pibSegundaCarta +
+            (float)numPontosTuristicoSegundaCarta +
+            (areaSegundaCarta / (float)numHabitantesSegundaCarta);   
+}
+
+void exibir_comparacao()
+{
+      printf("\n");
+      printf("Comparação de Cartas:\n");
+      if(numHabitantesPrimeiraCarta > numHabitantesSegundaCarta)
+            printf("População: Carta 1 venceu (1)\n");
+      else if(numHabitantesPrimeiraCarta == numHabitantesSegundaCarta)
+            printf("População: Houve empate\n");
+      else
+            printf("População: Carta 2 venceu (0)\n");
+
+      if(areaPrimeiraCarta > areaSegundaCarta)
+            printf("Área: Carta 1 venceu (1)\n");
+      else if(areaPrimeiraCarta == areaSegundaCarta)
+            printf("Área: Houve empate\n");
+      else
+            printf("Área: Carta 2 venceu (0)\n");
+
+      if(pibPrimeiraCarta > pibSegundaCarta)
+            printf("PIB: Carta 1 venceu (1)\n");
+      else if(pibPrimeiraCarta == pibSegundaCarta)
+            printf("PIB: Houve empate\n");
+      else
+            printf("PIB: Carta 2 venceu (0)\n");
+
+      if(numPontosTuriticosPrimeiraCarta > numHabitantesSegundaCarta)
+            printf("Pontos Turísticos: Carta 1 venceu (1)\n");
+      else if(numPontosTuriticosPrimeiraCarta == numPontosTuristicoSegundaCarta)
+            printf("Pontos Turísticos: Houve empate\n");
+      else
+            printf("Pontos Turísticos: Carta 2 venceu (0)\n");
+
+      if(densidadeDemoPrimeiraCarta < densidadeDemoSegundaCarta)
+            printf("Densidade Populacional: Carta 1 venceu (1)\n");
+      else if(densidadeDemoPrimeiraCarta == densidadeDemoSegundaCarta)
+            printf("Densidade Populacional: Houve empate\n");
+      else
+            printf("Densidade Populacional: Carta 2 venceu (0)\n");
+
+      if(rendaPerCapitaPrimeiraCarta > rendaPerCapitaSegundaCarta)
+            printf("PIB per Capita: Carta 1 venceu (1)\n");
+      else if(rendaPerCapitaPrimeiraCarta == rendaPerCapitaSegundaCarta)
+            printf("PIB per Capita: Houve empate\n");
+      else
+            printf("PIB per Capita: Carta 2 venceu (0)\n");
+
+      if(superPoderPrimeiraCarta > superPoderSegundaCarta)
+            printf("Super Poder: Carta 1 venceu (1)\n");
+      else if(superPoderPrimeiraCarta == superPoderSegundaCarta)
+            printf("Super Poder: Carta 1 venceu (1)\n");
+      else
+            printf("Super Poder: Carta 2 venceu (0)\n");
 }
